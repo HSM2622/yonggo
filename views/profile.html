@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content%}
+<div id="contact" class="profile-contact">
+    <div class="user-profile">
+        <p>{{user.username}}님의 프로필</p>
+    </div>
+    <div class="img">
+        <img id="img-preview" src="{{user.userimg}}" alt="프로필사진">
+    </div>
+    <div id="user-profile" style="float: right; width: 45%; margin: 10px;">
+        <div class="user-box">
+            <p>이름</p>
+            <h1>{{user.username}}</h1>
+        </div>
+        <div class="user-box">
+            <p>이메일</p>
+            <h1>{{user.useremail}}</h1>
+        </div>
+        <div class="user-box">
+            <p>전화번호</p>
+            <h1>{{user.phonenum}}</h1>
+        </div>
+        <div class="user-box">
+            <p>코멘트</p>
+            <h1>{{user.usercomment}}</h1>
+        </div>
+        <div id="userUpdateBtn">
+            <button class="profileBtn" type="butston"><a href="/profileUpdate">수정</a></button>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<link rel="stylesheet" href="./public/css/profile.css">
+{% endblock %}

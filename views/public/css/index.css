@@ -1,0 +1,49 @@
+/*기본적인 초기화 작업들*/
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+/* 전체영역 */
+body {
+    width: 70%;
+    margin: 0 auto;
+    background-position: center;
+}
+
+/* header영역 */
+header #mainLogo {
+    display: inline-block;
+}
+
+header #nav_items {
+    display: inline-block;
+    float: right;
+}
+
+header ul {
+    display: flex;
+}
+
+header li a{
+    display: block;
+    text-align: center;
+    margin: .25rem;
+    padding: .5rem;
+}
+
+/* footer영역 */
+
+
+/* login영역 */
+
+/* signup영역 */
+
+/* profile영역 */

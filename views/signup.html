@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block content%}
+<signup>
+    <div class="contact" style="margin: auto">
+        <div class="col-md-6 offset-md-3">
+            <form action="/signup" method="post" id="userSignup" class="main_form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input class="contactus" type="email" id="useremail" name="useremail" placeholder="이메일"
+                               onchange="emailcheck()" style="ime-mode:inactive;">
+                        <div id="emailMsg"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <form action="/signup/evf" method="post">
+                            <input class="contactus_evf" type="evf" name="emailverify" id="emailverify"
+                                   placeholder="이메일 인증번호">
+                            <input class="send_btn_evf" type="button" value="인증번호 받기" id="evfbtn">
+                        </form>
+                        <div id="evfMsg"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <input class="contactus" type="password" name="password" id="password" placeholder="비밀번호"
+                               onchange="pwcheck()">
+                    </div>
+                    <div class="col-md-12">
+                        <input class="contactus" type="password" name="password2" id="password2" placeholder="비밀번호 확인"
+                               onchange="pwcheck()">
+                        <div id="passwordMsg"></div>
+                    </div>
+                    <div class=" col-md-12">
+                        <input class="contactus" type="text" name="username" id="username" placeholder="실명" style="ime-mode:active;">
+                        <div id="nameMsg"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <input class="contactus" type="tel" name="phonenum" id="phonenum" placeholder="휴대폰 번호 '-'없이 입력"
+                               onchange="phonecheck()">
+                        <div id="phonenumMsg"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <input class="contactus" type="text" name="usercomment" id="usercomment" placeholder="코멘트">
+                    </div>
+                    <div class="col-md-12">
+                        <input class="contactus" type="text" name="usercode" placeholder="유저코드">
+                    </div>
+                    <div class="col-sm-12">
+                        <button class="send_btn" type="submit"> 회원가입</button>
+                        <div id="signupMsg"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="public/src/login.js"></script>
+</signup>
+<script src="public/src/signup.js"></script>
+{% endblock %}
