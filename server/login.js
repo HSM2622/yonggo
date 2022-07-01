@@ -8,12 +8,12 @@ router.use(passport.session()); // 세션 연결
 router.post('/', passport.authenticate('local', {
     successRedirect: '/main',
     failureRedirect: '/login',
-    failureFlash: true
+    failureFlash: true // 
 }))
 
 router.get('/', (req, res) => {
     if(!req.isLogin){
-        res.render('login.html',{ message : req.flash("error")});
+        res.render('login.html', { message : req.flash("error")});
     }else{
         res.redirect('/main')
     }

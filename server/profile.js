@@ -7,7 +7,7 @@ router.get('/', async (req, res, next) => {
         res.redirect('/login')
     } else {
         try {
-            let result = await User.findAll({
+            let result = await User.findOne({
                 raw: true,
                 where: {
                     useremail: req.user.useremail
@@ -15,11 +15,11 @@ router.get('/', async (req, res, next) => {
                 attributes: ['useremail', 'username', 'usercomment', 'phonenum', 'usercode', 'userimg']
             })
             if (req.user.userimg == 'default.png') {
-                result[0].userimg = '/img/default.png';
+                result.userimg = '/img/default.png';
             } else {
-                result[0].userimg = req.user.userimg;
+                result.userimg = req.user.userimg;
             }
-            res.render('profile.html', {user: result[0], username: req.user.username, isLogin: req.isLogin});
+            res.render('profile.html', {user: result, username: req.user.username, isLogin: req.isLogin});
         } catch (err) {
             console.error(err);
             next(err);

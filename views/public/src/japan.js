@@ -2,6 +2,7 @@ window.onload = async (e) => {
     try {
         const result = await axios.get('/slide');
         const slides = result.data;
+        console.log(result);
         let ol = document.querySelector('.carousel-indicators');
         ol.innerHTML = '';
         let mainDiv = document.querySelector('.carousel-inner');

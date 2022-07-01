@@ -104,6 +104,7 @@ app.get('/application', (req, res, next) => {
 app.get('/slide', async (req, res, next) => {
     try {
         const slide = await Japan_info.findAll();
+        console.log(slide);
         res.json(slide);
     } catch (err) {
         console.error(err);

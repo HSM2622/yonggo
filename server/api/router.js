@@ -9,15 +9,17 @@ const sequelize = require('sequelize');
 //게시판
 router.post('/board', async (req, res) => {
     const {article_title, article_content, article_category} = req.body;
+    // let useremail = req.user.useremail;
+    let { useremail } = req.user;
     try {
         const newArticle = await Article.create({
                 article_title,
                 article_content,
-                useremail: req.user.useremail,
+                useremail,
                 category: article_category,
             },
             {
-                where: {useremail: req.user.useremail}
+                where: {useremail}
             });
         await Reply.create({
             reply_content: '답변을 기다리는 중입니다.',
@@ -82,6 +84,7 @@ router.get('/board/click', async (req, res, next) => {
             else
                 array[i] = apiResult2[i].useremail;
         }
+        console.log(array)
         for(let i = 0; i < array.length; i++){
             let apiResult3 = await User.findOne({
                 raw:true,
@@ -90,6 +93,7 @@ router.get('/board/click', async (req, res, next) => {
             })
             nameArray[i] = apiResult3;
         }
+        console.log(nameArray);
         res.json({
             apiResult, apiResult2, nameArray
         })

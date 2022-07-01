@@ -13,7 +13,8 @@
                     </div>
                     <div class="col-md-12">
                         <form action="/signup/evf" method="post">
-                            <input class="contactus_evf" type="evf" name="emailverify" id="emailverify"
+                            <!-- 위 폼태그에 적힌 모든것들 다 안씀 -->
+                            <input class="contactus_evf" name="emailverify" id="emailverify"
                                    placeholder="이메일 인증번호">
                             <input class="send_btn_evf" type="button" value="인증번호 받기" id="evfbtn">
                         </form>
@@ -51,7 +52,6 @@
             </form>
         </div>
     </div>
-    <script src="public/src/login.js"></script>
 </signup>
 <script src="public/src/signup.js"></script>
 {% endblock %}

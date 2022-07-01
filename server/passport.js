@@ -6,12 +6,12 @@ const {User} = require('./models');
 
 module.exports = () => {
 
-    passport.serializeUser((user, done) => {
+    passport.serializeUser((user, done) => { 
         done(null, user);
     });
 
     passport.deserializeUser((id, done) => {
-        done(null, id);
+        done(null, id); 
     });
 
     passport.use(new LocalStrategy({

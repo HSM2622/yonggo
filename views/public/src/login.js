@@ -2,10 +2,11 @@ document.querySelector('#login').addEventListener('submit',
     async (event) => {
         const useremail = event.target.useremail.value;
         const password = event.target.password.value;
-        const loginMsg = document.querySelector('#loginMsg');
+        const emailMsg = document.querySelector('#loginMsg');
+        const passwordMsg = document.querySelector('#passMsg');
         if (useremail && password) {
             try {
-
+                
             } catch (err) {
                 console.error(err);
             }

@@ -10,8 +10,10 @@ const {User} = require('./models');
 dotenv.config();
 
 //노드메일러
-router.get('/evf', async (req, res) => {
-    const useremail = req.query.useremail;
+// router.get('/evf', async (req, res) => {
+router.get('/evf/:id', async (req, res) => {
+    // const useremail = req.query.useremail;
+    const useremail = req.params.id;
     const sendEvfcode = crypto.randomBytes(3).toString('hex');
     console.log(useremail);
 
@@ -73,7 +75,7 @@ router.get('/emailCheck', async (req, res) => {
     console.log(useremail);
     let result = await User.findAll({
         where: {
-            useremail: useremail
+            useremail
         }
     })
     if (result.length !== 0) {
@@ -91,22 +93,23 @@ router.post('/', async (req, res, next) => {
     let usercode = req.body.usercode;
     if (flag == false) {
         return res.send('이메일 중복');
-    }
+    }// 안씀
     if (password != password2) {
         return res.send('비밀번호 미일치');
-    }
+    } //안씀
     try {
-        if (flag == false) {
+        if (flag == false) { //안씀
             return res.redirect('/join?error=exist');
         }
         if(usercode != process.env.USER_CODE){  // 만약 정해진 usercode가 아니면 ''으로 변경
             usercode = '';
         }
-        const hash = await bcrypt.hash(password, 12);
+        const password = await bcrypt.hash(password, 12);
+        console.log(hash);
         await User.create({
             useremail,
             username,
-            password: hash,
+            password,
             usercode,
             phonenum,
             usercomment,
@@ -116,7 +119,6 @@ router.post('/', async (req, res, next) => {
         console.error(err)
         return next(err);
     }
-
 });
 
 

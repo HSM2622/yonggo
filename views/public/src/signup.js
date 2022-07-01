@@ -2,16 +2,18 @@
 
 let emailCheck = false;
 emailcheck = async () => {
+    console.log("55");
     const useremail = document.querySelector('#useremail').value;
     const emailMsg = document.querySelector('#emailMsg');
     try {
         if (useremail) {
             const reg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
             const sreg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-
+            
             if (useremail.match(reg) || useremail.match(sreg)) {
                 let data = await axios.get(`/signup/emailCheck?useremail=${useremail}`);
-                console.log(data, '데이터');
+                // let data = await axios.get(`/signup/emailCheck/${useremail}`);
+                console.log(data, '데이터');    
 
                 login_flag = data.data.login;
                 console.log(login_flag, '로그인플래그');
@@ -44,21 +46,21 @@ emailcheck = async () => {
 let evfcheck = false;
 let sendEvfcode = '';
 // const evfbtn = document.querySelector('#evfbtn').addEventListener('click', async () => {
-document.querySelector('#evfbtn').addEventListener('click', async () => {
+document.querySelector('#evfbtn').addEventListener('click', async (e) => {
     console.log("코드 보냄")
 
     const useremail = document.querySelector('#useremail').value;
     const evfMsg = document.querySelector('#evfMsg');
     console.log(useremail, "이메일");
     try {
-
         if (useremail) {
             if (!emailCheck) {
                 evfMsg.innerHTML = "이메일을 확인해주세요";
                 evfMsg.style.color = 'red';
                 return ;
             }
-            const data = await axios.get(`/signup/evf?useremail=${useremail}`);
+            // const data = await axios.get(`/signup/evf?useremail=${useremail}`);
+            const data = await axios.get(`/signup/evf/${useremail}`);
             sendEvfcode = data.data.sendEvfcode;
             alert('인증번호가 전송되었습니다. 이메일을 확인해주세요');
         } else {
@@ -133,6 +135,7 @@ document.querySelector('#userSignup').addEventListener('submit',
         console.log(sendEvfcode, "보낸 evf코드")
         console.log(evfcode == sendEvfcode)
         console.log(evfcheck, "현재 evfcheck")
+        
         if (evfcode == sendEvfcode)
             evfcheck = true;
         else

@@ -29,7 +29,7 @@ router.get('/youtube', async (req, res, next) => {
 router.post('/insert', async (req, res, next) => {
     try {
         let {url, content, uploader} = req.body;
-        console.log(req.body);
+        console.log("테스트11111", req, "테스트123");
         if (!url) {
             return res.send("<script>alert('영상 주소를 입력해주세요'); window.location.replace('/japan');</script>");
         }
@@ -37,14 +37,16 @@ router.post('/insert', async (req, res, next) => {
             return res.send("<script>alert('영상 설명을 입력해주세요'); window.location.replace('/japan');</script>");
         }
         const urlCheck = await Japan_info.findOne({
-            where: {url: url},
+            where: {url},
         });
         console.log(urlCheck)
         if (urlCheck != null) {
             return res.send("<script>alert('이미 존재하는 영상입니다.'); window.location.replace('/japan');</script>");
         }
         console.log(url);
-        const newUrl = url.split('=');
+        const newUrl = url.split('='); //https://www.youtube.com/watch?v = mu6HaYcpx98 일 때 1번은 = 잘라낸 mu6HaYcpx98
+        //0번은 https://www.youtube.com/watch?v
+        console.log(newUrl);
         url = "https://www.youtube.com/embed/" + newUrl[1];
         await Japan_info.create({
             url,

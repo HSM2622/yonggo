@@ -74,6 +74,8 @@ const writePage = async () => {
                     writePage();
                     let qna_page = c_page * 10 + 1;
                     let result = await axios.get(`api/board/click?qna_page=${qna_page}`);
+                    // result: {... data: {apiresult:[{article_id}x10], apiresult2: [{reply}x10], namearray:[{username:qwe}x10]}}
+                    console.log(result, "테스트 굿");
                     let articles = result.data.apiResult;
                     let replys = result.data.apiResult2;
                     let names = result.data.nameArray;
@@ -85,7 +87,7 @@ const writePage = async () => {
 
         });
         ul.appendChild(li);
-        for(let i=1; i<=10; i++){
+        for(let i=1; i<=10; i++){    //  275 27.5 28 
             if((c_page * 10) + i <= Math.ceil((page / 10))) {
                 let li = document.createElement('li');
                 li.id = `list_${i}`
@@ -159,7 +161,7 @@ const writeTitle = async (articles, replys, names) => {
             /* 질문 내용 */
             tr = document.createElement('tr');
             tr.style.height = '150px';
-            tr.style.display = 'none';
+            tr.style.display = 'none'; // 
             tr.id = `article_${article.article_id}_content`;
             td = document.createElement('td');
             td.textContent = `${article.category}`;
@@ -243,9 +245,9 @@ let page;
 let isZoo;
 ( async () => {
     try {
-        page = document.querySelector('#article_qna').textContent;
-        isZoo = document.querySelector('#isZoo').textContent;
-        isLogin = document.querySelector('#isLogin').textContent;
+        page = document.querySelector('#article_qna').textContent; // 총 글 개수
+        isZoo = document.querySelector('#isZoo').textContent; // 관리자인지 아닌지
+        isLogin = document.querySelector('#isLogin').textContent; // 로그인
         writePage();
 
         let qna_page = 1;
