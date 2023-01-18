@@ -36,7 +36,7 @@ app.use(session({
 })); // 세션 활성화
 app.use(passport.initialize()); // passport 구동
 app.use(passport.session()); // 세션 연결
-app.use('/api', router)
+app.use('/api', router);
 app.use('/signup', signupR);
 
 app.set('view engine', 'html');
